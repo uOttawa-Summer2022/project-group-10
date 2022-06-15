@@ -19,18 +19,19 @@
             android:textSize="30sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
         <Button
-            android:layout_marginBottom="5dp"
-            android:id="@+id/btnSignUp"
-            android:text="Sign Up"
+            android:id="@+id/btnLogin"
+            android:text="Login"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <Button
-            android:id="@+id/btnLogin"
-            android:text="Login"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/btnSignUp"
+            android:text="Sign Up"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_width="match_parent"

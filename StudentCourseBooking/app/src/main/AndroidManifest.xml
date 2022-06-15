@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentCourseBooking">
         <activity
+            android:name=".AdminWelcomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InstructorWelcomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StudentWelcomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
