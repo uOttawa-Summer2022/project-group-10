@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.coursebooking">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +12,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentCourseBooking">
+        <activity
+            android:name=".InstructorEditCourseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InstructorCourseListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditCourseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddCourseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CourseListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InstructorListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StudentListActivity"
+            android:exported="false" />
         <activity
             android:name=".AdminWelcomeActivity"
             android:exported="false" />

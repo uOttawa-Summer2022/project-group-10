@@ -17,17 +17,20 @@
         android:layout_height="wrap_content"/>
 
     <Button
+        android:id="@+id/btnCourse"
         android:layout_marginTop="20dp"
         android:text="Course management"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
+        android:id="@+id/btnInstructor"
         android:text="Instructor management"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
+        android:id="@+id/btnStudent"
         android:text="Student management"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

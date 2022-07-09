@@ -59,6 +59,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             Toast.makeText(this, "username is empty", Toast.LENGTH_LONG).show();
             return;
         }
+
+        if (username.equals("admin")) {
+            Toast.makeText(this, "can not register as an admin", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         if (password.isEmpty()) {
             Toast.makeText(this, "password is empty", Toast.LENGTH_LONG).show();
             return;
@@ -83,8 +89,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         int type = spType.getSelectedItemPosition();
         if (type == 0) {
             Database.getInstance().addInstructor(new Instructor(username, password, id, name, email, phone));
+            Database.getInstance().save(this);
         } else {
             Database.getInstance().addStudent(new Student(username, password, id, name, email, phone));
+            Database.getInstance().save(this);
         }
 
         finish();
