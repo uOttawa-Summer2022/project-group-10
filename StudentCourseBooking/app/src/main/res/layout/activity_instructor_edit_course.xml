@@ -81,7 +81,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="Course days: "
+                android:text="Course capacity: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <EditText
