@@ -87,7 +87,7 @@ public class CourseListActivity extends AppCompatActivity {
 
             public void bind(Course course) {
                 tvCode.setText("Course ID: " + course.getCourseCode());
-                tvName.setText("Username: " + course.getCourseName());
+                tvName.setText("Course Name: " + course.getCourseName());
 
                 if(course.getInstructorUsername() == null){
                     tvStatus.setText("No Instructor");
