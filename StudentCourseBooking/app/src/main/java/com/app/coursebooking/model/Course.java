@@ -1,6 +1,11 @@
 package com.app.coursebooking.model;
 
+import android.util.Log;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Course implements Serializable {
     private String courseCode;
@@ -12,12 +17,14 @@ public class Course implements Serializable {
     private String description;
     private int capacity;
 
+    private List<String> students = new ArrayList<>();
+
     public Course(String courseCode, String courseName) {
         this.courseCode = courseCode;
         this.courseName = courseName;
 
         days = "";
-        hours = "";
+        hours = " - ";
         description = "";
         capacity = 0;
     }
@@ -47,9 +54,10 @@ public class Course implements Serializable {
 
         if(instructorUsername == null){
             days = "";
-            hours = "";
+            hours = " - ";
             description = "";
             capacity = 0;
+            students = new ArrayList<>();
         }
     }
 
@@ -63,6 +71,14 @@ public class Course implements Serializable {
 
     public String getHours() {
         return hours;
+    }
+
+    public String getHoursStart() {
+        return hours.split("-")[0].trim();
+    }
+
+    public String getHoursEnd() {
+        return hours.split("-")[1].trim();
     }
 
     public void setHours(String hours) {
@@ -84,4 +100,17 @@ public class Course implements Serializable {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+
+    public List<String> getStudents() {
+        return students;
+    }
+
+    public void reduceCapacity() {
+        capacity--;
+    }
+
+    public void addCapacity() {
+        capacity++;
+    }
+
 }

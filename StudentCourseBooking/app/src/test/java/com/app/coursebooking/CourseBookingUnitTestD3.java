@@ -16,7 +16,7 @@ import com.app.coursebooking.model.Student;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class CourseBookingUnitTest {
+public class CourseBookingUnitTestD3 {
     @Before
     public void init(){
         Database.instance = null;

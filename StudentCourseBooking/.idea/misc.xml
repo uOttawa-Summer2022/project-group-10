@@ -17,9 +17,11 @@
         <entry key="..\:/app/app/0android/0tp/project-group-10/StudentCourseBooking/app/src/main/res/layout/activity_login.xml" value="0.25625" />
         <entry key="..\:/app/app/0android/0tp/project-group-10/StudentCourseBooking/app/src/main/res/layout/activity_main.xml" value="0.338768115942029" />
         <entry key="..\:/app/app/0android/0tp/project-group-10/StudentCourseBooking/app/src/main/res/layout/activity_sign_up.xml" value="0.25625" />
+        <entry key="..\:/app/app/0android/0tp/project-group-10/StudentCourseBooking/app/src/main/res/layout/activity_student_course_list.xml" value="0.3" />
         <entry key="..\:/app/app/0android/0tp/project-group-10/StudentCourseBooking/app/src/main/res/layout/activity_student_list.xml" value="0.32971014492753625" />
         <entry key="..\:/app/app/0android/0tp/project-group-10/StudentCourseBooking/app/src/main/res/layout/activity_student_welcome.xml" value="0.25104166666666666" />
         <entry key="..\:/app/app/0android/0tp/project-group-10/StudentCourseBooking/app/src/main/res/layout/item_course.xml" value="0.32971014492753625" />
+        <entry key="..\:/app/app/0android/0tp/project-group-10/StudentCourseBooking/app/src/main/res/layout/item_course_student.xml" value="0.25677083333333334" />
         <entry key="..\:/app/app/0android/0tp/project-group-10/StudentCourseBooking/app/src/main/res/layout/item_instructor.xml" value="0.32971014492753625" />
         <entry key="..\:/app/app/0android/0tp/project-group-10/StudentCourseBooking/app/src/main/res/layout/item_student.xml" value="0.32971014492753625" />
       </map>

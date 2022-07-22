@@ -6,17 +6,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.app.coursebooking.model.Course;
 import com.app.coursebooking.model.Database;
+import com.app.coursebooking.model.Validator;
+
+import java.util.List;
 
 public class InstructorEditCourseActivity extends AppCompatActivity implements View.OnClickListener {
     EditText etCode, etName;
     Button btnEdit;
     String courseCode;
 
-    EditText etDays, etHours, etCapacity, etDescription;
+    Spinner etDays;
+    EditText etHoursStart, etHoursEnd, etCapacity, etDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +33,8 @@ public class InstructorEditCourseActivity extends AppCompatActivity implements V
         etName = findViewById(R.id.etName);
         btnEdit = findViewById(R.id.btnEdit);
         etDays = findViewById(R.id.etDays);
-        etHours = findViewById(R.id.etHours);
+        etHoursStart = findViewById(R.id.etHoursStart);
+        etHoursEnd = findViewById(R.id.etHoursEnd);
         etCapacity = findViewById(R.id.etCapacity);
         etDescription = findViewById(R.id.etDescription);
 
@@ -39,8 +45,9 @@ public class InstructorEditCourseActivity extends AppCompatActivity implements V
         etCode.setText(course.getCourseCode());
         etName.setText(course.getCourseName());
 
-        etDays.setText(course.getDays());
-        etHours.setText(course.getHours());
+        etDays.setSelection(Validator.getDaysPosition(course.getDays()));
+        etHoursStart.setText(course.getHoursStart());
+        etHoursEnd.setText(course.getHoursEnd());
         etCapacity.setText("" + course.getCapacity());
         etDescription.setText(course.getDescription());
     }
@@ -48,8 +55,9 @@ public class InstructorEditCourseActivity extends AppCompatActivity implements V
     @Override
     public void onClick(View v) {
         if (v == btnEdit) {
-            String days = etDays.getText().toString().trim();
-            String hours = etHours.getText().toString().trim();
+            String days = etDays.getSelectedItem().toString().trim();
+            String hoursStart = etHoursStart.getText().toString().trim();
+            String hoursEnd = etHoursEnd.getText().toString().trim();
             String capacityStr = etCapacity.getText().toString().trim();
             String description = etDescription.getText().toString().trim();
 
@@ -58,8 +66,23 @@ public class InstructorEditCourseActivity extends AppCompatActivity implements V
                 return;
             }
 
-            if (hours.isEmpty()) {
-                Toast.makeText(this, "course hours is empty", Toast.LENGTH_LONG).show();
+            if (hoursStart.isEmpty()) {
+                Toast.makeText(this, "course hours start is empty", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            if(!Validator.isValidTime(hoursStart)){
+                Toast.makeText(this, "course hours start is invalid", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            if (hoursEnd.isEmpty()) {
+                Toast.makeText(this, "course hours end is empty", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            if(!Validator.isValidTime(hoursEnd)){
+                Toast.makeText(this, "course hours end is invalid", Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -76,7 +99,7 @@ public class InstructorEditCourseActivity extends AppCompatActivity implements V
 
             Course course = Database.getInstance().getCourse(courseCode);
             course.setDays(days);
-            course.setHours(hours);
+            course.setHours(hoursStart+"-"+hoursEnd);
             course.setCapacity(capacity);
             course.setDescription(description);
             Database.getInstance().save(this);

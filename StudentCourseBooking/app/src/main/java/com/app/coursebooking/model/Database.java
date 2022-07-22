@@ -35,10 +35,11 @@ public class Database implements Serializable {
         courses = new ArrayList<>();
 
         /*
-        instructors.add(new Instructor("instructor1", "123", "instructor1", "instructor1", "instructor1@email.com",
+        instructors.add(new Instructor("2", "2", "instructor1", "instructor1", "instructor1@email.com",
                 "1234567"));
-        students.add(new Student("student1", "123", "student1", "student1", "student1@email.com",
+        students.add(new Student("1", "1", "student1", "student1", "student1@email.com",
                 "1234567"));
+        courses.add(new Course("HIS102", "Computer"));
         */
 
         courses.add(new Course("HIS101", "History"));
@@ -47,7 +48,7 @@ public class Database implements Serializable {
     public static void load(Context context){
         try {
             File file = context.getFilesDir();
-            FileInputStream fileInputStream = new FileInputStream(new File(file, "booking.dat"));
+            FileInputStream fileInputStream = new FileInputStream(new File(file, "booking5.dat"));
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             instance = (Database) objectInputStream.readObject();
             //Log.e("debug-load", instance.getCourses().size()+"");
@@ -63,7 +64,7 @@ public class Database implements Serializable {
     public void save(Context context){
         try {
             File file = context.getFilesDir();
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(file, "booking.dat"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(file, "booking5.dat"));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(this);
             objectOutputStream.close();
@@ -195,4 +196,26 @@ public class Database implements Serializable {
         return result;
     }
 
+    public List<Course> searchCourseWithDays(String key) {
+        List<Course> result = new ArrayList<>();
+        key = key.toLowerCase();
+
+        for (Course course : courses) {
+            if (course.getCourseCode().toLowerCase().contains(key) || course.getCourseName().toLowerCase().contains(key)
+                    || course.getDays().toLowerCase().contains(key)) {
+                result.add(course);
+            }
+        }
+
+        return result;
+    }
+
+    public Student getStudent(String stu) {
+        for(Student student: students){
+            if(student.getUsername().equals(stu)){
+                return  student;
+            }
+        }
+        return null;
+    }
 }
