@@ -1,15 +1,12 @@
 package com.app.coursebooking;
 
-import org.junit.After;
-import org.junit.Before;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import com.app.coursebooking.model.Validator;
+
 import org.junit.Test;
-
-import static org.junit.Assert.*;
-
-import com.app.coursebooking.model.Course;
-import com.app.coursebooking.model.Database;
-import com.app.coursebooking.model.Instructor;
-import com.app.coursebooking.model.Student;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -17,65 +14,33 @@ import com.app.coursebooking.model.Student;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class CourseBookingUnitTestD3 {
-    @Before
-    public void init(){
-        Database.instance = null;
+
+    @Test
+    public void testIsValidateDays() {
+        assertTrue(Validator.isValidDays("Monday"));
+        assertFalse(Validator.isValidDays("day"));
     }
 
     @Test
-    public void testAddCourse() {
-        assertTrue(Database.getInstance().addCourse(new Course("C01", "C01_Name")));
-        assertFalse(Database.getInstance().addCourse(new Course("C01", "C01_Name")));
-
-        assertTrue(Database.getInstance().searchCourse("C01").size() > 0);
+    public void testValidateDays() {
+        assertEquals(0, Validator.getDaysPosition("Monday"));
+        assertEquals(5, Validator.getDaysPosition("Saturday"));
     }
 
     @Test
-    public void testAddStudent() {
-        assertTrue(Database.getInstance().signUp(new Student(
-                "S01", "123", "S01", "S01_Name", "email", "phone")));
-
-        assertTrue(Database.getInstance().login("S01", "123") != null);
+    public void testConflictTime() {
+        assertTrue(Validator.isConflict("14:00-15:00", "14:30-16:00"));
+        assertTrue(Validator.isConflict("14:00-15:00", "13:30-16:00"));
     }
 
     @Test
-    public void testAddInstructor() {
-        assertTrue(Database.getInstance().signUp(new Instructor(
-                "I01", "123", "I01", "I01_Name", "email", "phone")));
-
-        assertTrue(Database.getInstance().login("I01", "123") != null);
-        assertTrue(Database.getInstance().login("I01", "123") instanceof  Instructor);
+    public void testValidateTime() {
+        assertTrue(Validator.isValidTime("14:00"));
+        assertFalse(Validator.isValidTime("25:30"));
     }
 
     @Test
-    public void testAssign() {
-        Database.getInstance().addCourse(new Course("C01", "C01_Name"));
-     Database.getInstance().signUp(new Instructor(
-                "I01", "123", "I01", "I01_Name", "email", "phone"));
-
-        Instructor instructor = (Instructor) Database.getInstance().getUser("I01");
-        Course course = Database.getInstance().getCourse("C01");
-        course.setDays("Monday");
-
-        course.setInstructorUsername(instructor.getUsername());
-
-        assertFalse(course.getDays().isEmpty());
+    public void testToTime() {
+        assertEquals(60, Validator.toTime("1:00"));
     }
-
-
-    @Test
-    public void testUnAssign() {
-        Database.getInstance().addCourse(new Course("C01", "C01_Name"));
-        Database.getInstance().signUp(new Instructor(
-                "I01", "123", "I01", "I01_Name", "email", "phone"));
-
-        Instructor instructor = (Instructor) Database.getInstance().getUser("I01");
-        Course course = Database.getInstance().getCourse("C01");
-        course.setDays("Monday");
-
-        course.setInstructorUsername(null);
-
-        assertTrue(course.getDays().isEmpty());
-    }
-
 }
